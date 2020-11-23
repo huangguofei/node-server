@@ -1,13 +1,13 @@
 //全局异常处理 ---中间件
-const {HttpException} = require('../core/http-exception');
+const { HttpException } = require('../core/http-exception');
 
 const catchError = async (ctx, next) => {
     try {
         await next();
     } catch (error) {
         //区分生产环境（无需打印异常信息）和开发环境（终端打印未知异常信息）, 并且已知错误不抛出
-        const isHttpException = error instanceof HttpException;
-        const isDev = global.config.environment == 'dev';
+        const isHttpException = error instanceof HttpException; //是否是已知错误
+        const isDev = global.config.environment == 'dev'; //是否是开发环境
 
         if(!isHttpException && isDev) {
             throw error;

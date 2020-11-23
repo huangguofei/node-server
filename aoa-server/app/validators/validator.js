@@ -9,6 +9,7 @@ class PositiveIntegerValidater extends LinValidator {
     }
 }
 
+//注册参数校验
 class RegisterValidator extends LinValidator{
     constructor(props) {
         super(props);
@@ -28,14 +29,14 @@ class RegisterValidator extends LinValidator{
             }),
             new Rule('matches', '密码格式错误', '^[0-9]'),
         ]
-        this._password = this.password;
+        this._password = this.password; //规则复用
 
     }
 
     validatePassword(vals) { //自定义验证
         const {password, _password} = vals.body;
         if(password !== _password) {
-            throw new Error('两个密码不相同');
+            throw new Error('两个密码不相同'); //抛出异常
         }
     }
 

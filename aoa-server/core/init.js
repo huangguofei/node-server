@@ -18,6 +18,7 @@ class InitManager {
             }
         }
     }
+    //自动把config配置存入全局对象global
     static LoadConfig(path = '') {
         const configPath = path || process.cwd() + '/config/config.js';
         const config = require(configPath);

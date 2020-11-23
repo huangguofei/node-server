@@ -8,8 +8,9 @@ require('./app/models/user');
 
 const app = new Koa();
 
-app.use(catchError);
-app.use(parser());
+app.use(catchError); //注册异常监听中间件
+
+app.use(parser()); //注册参数转JSON中间件
 
 InitManager.initCore(app); //初始化开始构建（自动化路由）
 

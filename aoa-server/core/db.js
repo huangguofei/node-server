@@ -1,7 +1,7 @@
 //数据库操作
 
 const Sequelize = require('sequelize');
-const {dbName, host, port, user, password} = require('../config/config').database;
+const { dbName, host, port, user, password } = require('../config/config').database;
 
 const sequelize = new Sequelize(dbName, user, password, {
     dialect: 'mysql',
@@ -15,7 +15,7 @@ const sequelize = new Sequelize(dbName, user, password, {
         createdAt: 'created_at', // 把系统默认的created_time 重命名
         updatedAt: 'updated_at', // 把系统默认的updated_time 重命名
         deletedAt: 'deleted_at', // 把系统默认的deleted_time 重命名
-        underscored: true,
+        underscored: false, //
     }
 });
 

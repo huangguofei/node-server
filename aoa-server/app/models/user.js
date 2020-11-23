@@ -1,6 +1,6 @@
-//重新命名一个 导入的属性或者方法 { name : newName}
-const {Sequelize, Model} = require('sequelize');
-const {sequelize} = require('../../core/db');
+//用户注册
+const { Sequelize, Model} = require('sequelize');//重新命名一个 导入的属性或者方法 { name : newName}
+const { sequelize } = require('../../core/db');
 
 class User extends Model {
 
@@ -14,7 +14,10 @@ User.init({
         autoIncrement: true, //是否自动增长
     },
     nickName: Sequelize.STRING, //定义数据库中字段类型,mysql 的一种类型
-    email: Sequelize.STRING,
+    phone: {
+        type: Sequelize.STRING(64), //最大字符 64
+        unique: true, //是否唯一
+    },
     password: {
         type: Sequelize.STRING,
         defaultValue: '123456'
@@ -28,4 +31,7 @@ User.init({
     tableName: 'user'
 }); //传递实例
 
+module.exports = {
+    User
+};
 
