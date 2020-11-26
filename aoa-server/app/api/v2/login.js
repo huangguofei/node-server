@@ -1,6 +1,6 @@
 const router = require('koa-router')();
 
-router.get('/logins', (ctx, next) => {
+router.get('/logins', async (ctx, next) => {
     ctx.body = {name: 'hgf'}
 });
 

@@ -15,12 +15,13 @@ const sequelize = new Sequelize(dbName, user, password, {
         createdAt: 'created_at', // 把系统默认的created_time 重命名
         updatedAt: 'updated_at', // 把系统默认的updated_time 重命名
         deletedAt: 'deleted_at', // 把系统默认的deleted_time 重命名
-        underscored: false, //
+        underscored: false, //是否自动转成下划线
+        freezeTableName: true, //是否默认用复数作为表名
     }
 });
 
 sequelize.sync({ //异步 对数据库进行操作，创建表（已存在则不操作）
-    force: true, //true: 创建表，已存在则先删除
+    force: false, //true: 创建表，已存在则先删除
 });
 
 module.exports = {

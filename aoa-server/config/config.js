@@ -7,5 +7,9 @@ module.exports = {
         port: '1019',
         user: 'root',
         password: '19941019',
+    },
+    security: {
+        secretKey: 'huangguofei', //key
+        expiresIn: 60*60 ,//令牌过期时间
     }
 }

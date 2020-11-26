@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken')
 /***
- * 
+ *
  */
 const findMembers = function (instance, {
     prefix,
@@ -39,25 +39,24 @@ const findMembers = function (instance, {
     return _find(instance)
 }
 
-const generateToken = function(uid, scope){
-    const secretKey = global.config.security.secretKey
-    const expiresIn = global.config.security.expiresIn
+//生成令牌token
+const generateToken = function (uid, scope) { //scope:级别
+    const {secretKey, expiresIn} = global.config.security;
     const token = jwt.sign({
         uid,
         scope
-    },secretKey,{
-        expiresIn
-    })
-    return token
-}
+    }, secretKey, {
+        expiresIn //过期时间
+    });
 
+    return token;
+}
 
 
 module.exports = {
     findMembers,
     generateToken,
 }
-
 
 
 // const generateToken = function (uid, scope) {
