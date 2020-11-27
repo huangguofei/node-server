@@ -94,10 +94,53 @@ class VerifyToken extends LinValidator {
     }
 }
 
+//添加文章参数验证
+class AddArticleVerify extends LinValidator{
+    constructor() {
+        super();
+        this.title = [new Rule('isLength', '标题字数在12个字以内', {
+            min: 1,
+            max: 12,
+        })]
+        this.describe = [new Rule('isLength', '描述字数在80个字以内', {
+            min: 1,
+            max: 80,
+        })]
+        this.content = [new Rule('isLength', '描述字数在500个字以内', {
+            min: 1,
+            max: 500,
+        })]
+    }
+
+}
+
+//点赞文章验证
+class LikeArticleValidator extends LinValidator{
+    constructor() {
+        super();
+        this.articleId = [
+            new Rule('isInt', '需要是正整数', {min: 1}),
+        ]
+    }
+}
+
+//删除文章验证
+class DeleteArticleValidator extends LikeArticleValidator{
+    constructor() {
+        super();
+        this.articleId = [
+            new Rule('isInt', '需要是正整数', {min: 1}),
+        ]
+    }
+}
+
 
 module.exports = {
     PositiveIntegerValidater,
     RegisterValidator,
     TokenValidator,
     VerifyToken,
+    AddArticleVerify,
+    LikeArticleValidator,
+    DeleteArticleValidator,
 }

@@ -1,6 +1,6 @@
 //注册路由
 const router = require('koa-router')({prefix: '/v1'});
-const { HttpException, ParameterException, Success } = require('../../../core/http-exception');
+const { Success } = require('../../../core/http-exception');
 const { RegisterValidator } = require('../../validators/validator');
 const { User } = require('../../models/user');
 

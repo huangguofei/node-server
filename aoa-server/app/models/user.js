@@ -21,6 +21,15 @@ class User extends Model {
         }
         return user;
     }
+    //获取用户信息
+    static async getUser(id) {
+        const user = await User.findOne({
+            where: {
+                id,
+            }
+        });
+        return user;
+    }
 
     static async VerifyOpenid(openid){
 
