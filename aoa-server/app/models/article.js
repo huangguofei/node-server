@@ -3,6 +3,7 @@ const { sequelize } = require('../../core/db');
 const { NotFound, AutoFailed }  = require('../../core/http-exception');
 
 class Article extends Model{
+    //获取文章
     static async getArticle(id) {
         const article = await Article.findOne({
             where: {
@@ -11,7 +12,7 @@ class Article extends Model{
         });
         return article;
     }
-
+    // 删除文章
     static async deleteArticle(articleId, uid) {
         const article = await Article.findOne({
             where: {
@@ -22,8 +23,14 @@ class Article extends Model{
             throw new NotFound('该文章不存在！');
         }
         if(article.authorId != uid) {
-            throw new AutoFailed('权限不足！');
+            throw new AutoFailed('非本人文章无法删除！');
         }
+        return  sequelize.transaction(async t => {
+            await article.destroy({
+                force: true,
+                transaction: t,
+            })
+        })
 
     }
 }

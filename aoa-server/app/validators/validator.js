@@ -115,23 +115,24 @@ class AddArticleVerify extends LinValidator{
 }
 
 //点赞文章验证
-class LikeArticleValidator extends LinValidator{
+class LikeArticleValidator extends PositiveIntegerValidater{
     constructor() {
         super();
-        this.articleId = [
-            new Rule('isInt', '需要是正整数', {min: 1}),
+        this.type = [
+            new Rule('isOptional'), //可以为空，可以不为空（必须满足后面的规则）
+            new Rule('isLength', 'type格式不正确', {
+                max: 1,
+            }),
         ]
     }
 }
 
 //删除文章验证
-class DeleteArticleValidator extends LikeArticleValidator{
+class DeleteArticleValidator extends PositiveIntegerValidater{
     constructor() {
         super();
-        this.articleId = [
-            new Rule('isInt', '需要是正整数', {min: 1}),
-        ]
     }
+
 }
 
 
